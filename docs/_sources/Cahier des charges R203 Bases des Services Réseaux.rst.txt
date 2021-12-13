@@ -1,0 +1,262 @@
+**********************************************
+Objectifs
+**********************************************
+
+---------------------------------------
+Compétences professionnelles
+---------------------------------------
+
+Cette ressource apporte les connaissances et compétences de base nécessaires à la mise en oeuvre des **services réseaux  dans un système d’information.**
+Les services abordés sont des services essentiels à tout SI tels que le **DNS**, le **DHCP** ou le **transfert de fichiers** pour les configurations d'appareils réseaux pour n'en citer que quelques-uns. Cette découverte des premiers **protocoles applicatifs** vous sensibilisera aux **risques de sécurité** liés à la configuration de ces services
+
+---------------------------------------
+Contexte de déploiement de services
+---------------------------------------
+
+* Vous êtes en charge etc……
+
+
+
+
+
+
+
+************************************
+Objectifs
+************************************
+
+---------------------------------------
+Compétences professionnelles
+---------------------------------------
+
+
+En tant que futur professionnel R&T, vous serez régulièrement amené à **traiter des données provenant du système d'information de votre entreprise** (extraction d'information comptable par exemple), pour **les présenter de façon pertinente et synthétique à votre hiérarchie ou à vos collaborateurs**. Ces traitements pouvant être **récurrents** (mensualisation de bilan par exemple), ils gagnent à être **automatisés** par des programmes/scripts informatiques pour les gérer de façon efficace.
+
+La SAE15 vous projette dans cette **situation professionnelle**. Elle vous propose d'exploiter les **données des emplois du temps (ADE)** des personnels de l'IUT, de les traiter et de les présenter pour vos **collaborateurs universitaires** (services administratifs, financiers, collègues enseignants, collègues étudiants, ...).
+
+
+----------------------------------------------
+Contexte de mise en place des services réseaux
+----------------------------------------------
+
+
+
+
+---------------------------------
+Contexte de réalisation
+---------------------------------
+
+La SAE15  se déroulera selon le principe suivant :
+
+* Vous êtes en charge, à titre **individuel**, d'un projet de développement informatique.
+
+* Ce projet vous est confié par votre **hiérarchie** (l'enseignant mandataire en charge de votre groupe de TD).
+
+* Votre hiérarchie **impose un cahier des charges fonctionnel et technique** (décrits par la suite), qui devra être respecté avec des livrables fournis dans les temps.
+
+--------------------------------
+Organisation du temps de travail
+--------------------------------
+
+Le projet devra être réalisé dans des **plages de travail réservées, obligatoires** et inscrites par votre hiérarchie dans votre emploi du temps (charge homme/mois) :
+
+    * une partie des séances de travail seront encadrées (TD/TP) par des collaborateurs techniques (enseignants) que vous pourrez solliciter en cas de questions ;
+
+    * une autre partie des séances seront à faire en autonomie (Proj) pour avancer votre travail et à l'issue desquelles un certain nombre de fonctionnalités devront être livrées (cf. :ref:`échéancier du projet<Echeancier>`.
+
+.. _Discord:
+
+Plusieurs **séances optionnelles** dites de **Hotline**, mutalisées pour tous les groupes de TD, sont également prévues, en distantiel, sur Discord :
+
+    * lien pour rejoindre le Discord RT : `Discord`_
+    * accès validé par un enseignant après avoir mis votre pseudo sous la forme ``[Groupe TD] NOM Prénom`` avec ``Groupe TD`` valant ``S1G1``, ``S1G2``, ``S1G3`` ou ``S1G4``
+
+Au cours de ces Hotlines, un collaborateur technique (enseignant) sera présent pour répondre à vos différentes questions. Vous pourrez également utiliser ces séances pour avancer votre projet et vous entre-aider les uns les autres.
+
+---------------------
+Ressources en appui
+---------------------
+
+La réalisation de cette SAE s'appuie sur les connaissances acquises dans différentes ressources :
+
+* Parmi les **ressources transverses** :
+
+  * **R110-Anglais** : la documentation (des codes informatiques) du projet doit être écrite en anglais ;
+  * **R111-ExprComm** : les échanges avec le mandataire hiérarchique doivent être professionnels ;
+  * **R115-GestionProjet** : l'organisation de votre travail doit être adaptée à la tenue des délais (cf. `Espace Chamilo de R115 <https://chamilo.univ-grenoble-alpes.fr/courses/IUT1RT1R115>`_).
+
+* Parmi les **ressources techniques** :
+
+  * **R106-ArchiInfo** : où est traitée la représentation des données en mémoire ;
+  * **R107-Python1** : dans laquelle ont été présentées les techniques de programmation (cf. `Espace Chamilo de R107 <https://chamilo.univ-grenoble-alpes.fr/courses/IUT1RT1R107>`_) ;
+  * **R108-Shell** et vos connaissances sur la gestion des fichiers : l'exécution de programmes en ligne de commandes sur un système d'exploitation Linux ou Windows (cf. `Espace Chamilo de R108 <https://chamilo.univ-grenoble-alpes.fr/courses/IUT1RT1R108>`_) ;
+  * **R109-TechnoWeb** : dans lequel est abordée la mise en page de documents que vous appliquez par un balisage de 1er niveau en utilisant le langage Markdown (cf. `Espace Chamilo de R109 <https://chamilo.univ-grenoble-alpes.fr/courses/IUT1RT1R109>`_).
+
+
+
+**********************************************
+Cahier des charges
+**********************************************
+
+Les objectifs, la finalité et les éléments de mise en oeuvre du projet, qui vous est confié (**cahier des charges**) sont donnés ci-dessous.
+
+.. warning:: Votre mandataire hiérarchique (l'enseignant en charge de votre groupe) vous communiquera le numéro du projet qui vous est attribué et donc les attentes fonctionnelles spécifiques à votre projet.
+
+-------------------------
+Cadre et objectif général
+-------------------------
+
+Le projet a pour objectif d'exploiter les **données traitées extraites d'ADE** fournies sous forme d'**exports** ``.ics`` :ref:`mis à votre disposition<donnees_ics_manipulees>` par la suite. Ses étapes principales consistent à :
+
+* lire les données des emplois du temps. Ces derniers sont composés d'une série d'évènements, qui désignent l'ensemble des créneaux de l'emploi du temps.
+
+* les interpréter pour en extraire les évènements pertinents en lien avec votre projet (par exemple, ne garder que les créneaux d'un vacataire donné ou d'un groupe de TD donné)
+
+* les traiter pour répondre à :ref:`l'objectif de votre projet <fonctionnalites>` (par exemple, calculer le nombre total d'heures d'un groupe de TD donné)
+
+* de construire une représentation textuelle (en utilisant la mise en forme *Markdown*) des données calculées (généralement un tableau présentant les résultats)
+
+* de créer une représentation graphique avec :py:mod:`matplotlib` des données calculées puis de l'exporter en `.png`
+
+
+Le projet doit :
+
+* utiliser les même outils de développement que dans la ressource **R107-Python1** (Git + PyCharm)
+
+* s'appuyer sur le même système d'exploitation que dans les ressources **R107-Python1** et **R108-Shell**, à savoir Linux.
+
+  .. note:: Le projet pourra tout à fait être traité en Windows sur votre machine personnelle, mais devra conserver une **compatibilité Windows/Linux** dans la gestion de l'arborescence : vous devrez notamment utiliser des **chemins relatifs** et définir ces chemins **au format Linux** y compris pour Windows.
+
+* être documenté (commentaires pertinents dans le code) en rédigeant cette documentation en anglais.
+
+----------
+Dépôt GIT
+----------
+
+Le projet est rattaché à un dépôt GIT sur le serveur GitLab de Gricad, dédié aux versionnements et à la livraison de vos codes informatiques. Le versionnement étant tracé et daté, il servira de **preuves** pour le travail à réaliser pendant les heures d'autonomie.
+
+Un dépôt distant vierge, spécialement dédié à cette SAE15, a déjà été créé - par les enseignants - sur le serveur. Retrouvez ses éléments de configuration (URL du dépôt) en vous loggant sur l'`interface Web de Gricad <https://gricad-gitlab.univ-grenoble-alpes.fr/>`_ (avec vos identifiants *Agalan*) et en accédant au projet ``iut_rt/but1/sae15/votre_login``.
+
+-----------------------------------
+Langages de scripting/programmation
+-----------------------------------
+
+Le projet doit utiliser :
+
+* le langage de programmation **Python** pour les **codes informatiques** gérant la lecture, l'analyse, le traitement des données et la publication de leur analyse. Vous utiliserez la version 3.9 (la même qu'à l'IUT pour la ressource **R107-Python1**)
+
+* le langage de script **bash** pour les scripts permettant l'automatisation du traitement et de la publication des résultats  (vu en **R108-Shell**)
+
+------------------------------
+Environnement de développement
+------------------------------
+
+Les codes informatiques du projet doivent être développés en utilisant l'IDE `PyCharm Community Edition <https://www.jetbrains.com/pycharm/download/#section=windows>`_ (vu en **R107-Python1**).
+
+A l'IUT, votre travail doit :
+
+* être créé dans un répertoire :fichier:`SAE15` situé dans votre répertoire personnel (*home directory*).
+
+* être centralisé dans un *projet PyCharm*, rattaché au répertoire :fichier:`SAE15`. Le *projet PyCharm* sera configuré pour être le **dépôt local** du *projet SAE15 sur GitLab*.
+
+----------------------
+Arborescence du projet
+----------------------
+
+Votre projet doit :
+
+* être exécuté par le biais d'un script :fichier:`projetX.py`, avec ``X`` à remplacer par le numéro de votre projet, présent dans votre répertoire :fichier:`SAE15`. Ce script reprendra la structure classique des programmes vu en *R107-Python1* en utilisant le *modèle de script python de l'IUT1-RT* (*template*).
+
+* respecter l'arborescence suivante (:fichier:`SAE15` désignant le répertoire auquel est rattaché votre projet et constituant la base du dépôt local Git) :
+
+   .. code-block:: bash
+
+      SAE15/
+      ├── .git/
+      ├── data/
+      │   └── ...
+      ├── tools/
+      │   ├── tools_date.py
+      │   ├── tools_introspection.py
+      │   ├── tools_constantes.py
+      │   ├── tools_sae.py
+      │   └── tools_tests.py
+      ├── tests/
+      │   └── ...
+      ├── .gitignore
+      ├── .gitlab-ci.yml
+      ├── projetX.py
+      ├── pytest.ini
+      └── requirements.txt
+
+   avec :
+
+      * les 5 scripts :fichier:`tools_*.py` à télécharger avec les liens de téléchargement suivants :
+
+         * :download:`tools_instrospection.py <../../src/tools/tools_introspection.py>`
+         * :download:`tools_sae.py <../../src/tools/tools_sae.py>`
+         * :download:`tools_tests.py <../../src/tools/tools_tests.py>`
+         * :download:`tools_constantes.py <../../src/tools/tools_constantes.py>`
+         * :download:`tools_date.py <../../src/tools/tools_date.py>`
+
+      * :fichier:`data` le répertoire dédié à stocker différents fichiers textes nécessaires au projet, fournis par la suite
+
+      * :fichier:`tests` le répertoire dédié aux tests unitaires, fournis par la suite
+
+      * :fichier:`requirements.txt` le fichier permettant d'installer chez vous les modules nécessaires à télécharger avec le lien de téléchargement suivant :
+
+         * :download:`requirements.txt <ci/requirements.txt>`
+
+      * :fichier:`.gitignore` le fichier permettant de configurer Git pour ne pas envoyer sur le dépôt distant les fichiers temporaires :
+
+         * :download:`.gitignore <ci/gitignore>`
+
+      * :fichier:`projetX.py` le programme python contenant les codes que vous allez écrire pour votre projet et dont la structure (découpage en fonctions) est décrite par la suite.
+
+      * :fichier:`.gitlab-ci.yml` et :fichier:`pytest.ini` permettent de faire fonctionner l':ref:`intégration continue <_gitlab_ci>`
+
+.. warning::
+
+    * Le répertoire :fichier:`tools` devra être déclaré comme **répertoire contenu des codes sources** (*source root*).
+
+    * Le répertoire :fichier:`tests` devra être rattaché à une configuration d'exécution des tests unitaires utilisant :py:mod:`pytest`.
+
+    * Les fichiers :fichier:`.gitignore` et :fichier:`.gitlab-ci.yml` commencent avec un point.
+
+.. note::
+
+   Vous pouvez :
+
+   * ajouter au besoin autant de modules que nécessaires, pour structurer votre code, en les stockant à la racine du projet.
+
+   * exploiter les constantes fournies dans le module :fichier:`tools_constantes.py` dont le lien de téléchargement a été donné plus haut.
+
+.. _donnees_ics_manipulees:
+
+----------------------
+Données ics manipulées
+----------------------
+
+Les données des emplois du temps ADE des groupes de TD du BUT1 et du DUT2 - auxquels se limitent ce projet - ont été collectées par les enseignants depuis le portail d'accès Web à ADE (`Portail ADE <https://ade-sts.grenet.fr/direct/?data=1d04874d83cdeb5335dd466bfd2eca6be7292d33e3928696735ac6b6fb2b445967cd25bd3a2b28cd82fda7ddd6f6f085f9355e402da57010a3e2f2651b5e5dab312fc9de3a649e9bc365775eed9c7bedc791fc673a5139368edd3cda7b61e593>`_) et ont été simplifiées.
+
+Elles vous sont fournies sous forme de fichiers `.ics` respectant le standard `iCalendar` créé pour l'échange de données de calendrier (cf. `Standard iCalendar <https://fr.wikipedia.org/wiki/ICalendar>`_). Ces fichiers (1 fichier par groupe de TD) sont à télécharger et à versionner dans le répertoire :fichier:`data` de votre projet :
+
+   * Emploi du temps des 4 groupes de TD de BUT1 au semestre 1 : :download:`S1G1.ics <../../exports/ics/S1G1.ics>`, :download:`S1G2.ics <../../exports/ics/S1G2.ics>`, :download:`S1G3.ics <../../exports/ics/S1G3.ics>`, :download:`S1G4.ics <../../exports/ics/S1G4.ics>`.
+
+   * Emploi du temps des 2 groupes de TD de DUT2 en formation initiale au semestre 3 : :download:`S3G1.ics <../../exports/ics/S3G1.ics>`, :download:`S3G2.ics <../../exports/ics/S3G2.ics>`.
+
+   * Emploi du temps des alternants de DUT2 à l'année (semestre 3 et semestre 4) : :download:`UFA.ics <../../exports/ics/UFA.ics>`.
+
+--------------------
+Tests unitaires
+--------------------
+
+Une série de tests unitaires vous seront fournis. Ils serviront à vérifier la *justesse* de votre travail.
+
+.. warning:: Ces tests sont à utiliser en dernier recours pour finaliser le code de vos fonctions. Dans la pratique, il est préférable d'utiliser le programme principal ``main`` de votre projet pour :
+
+   #. déclarer des données que vous maitrisez
+   #. appeler vos fonctions avec ces données
+   #. vérifier avec des affichages console (``print``) ou avec le débuggeur le déroulement puis le résultat de votre fonction
+
+   Vous pourrez trouver des données pour vos propres tests, soit dans les différentes activités en lien avec le projet, soit dans le répertoire :fichier:`tests/data/` et ses sous-répertoires.
